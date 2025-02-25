@@ -25,6 +25,7 @@ public class FuncionarioTestesService {
 	private IFuncionarioService service;
 	
 	private FuncionarioDTO funcDTO;
+	private FuncionarioDTO funcEmailDuplicado;
 	private FuncionarioDTO funcInativo;
 	private Funcionario employe;
 	private Funcionario employeInativo;
@@ -55,11 +56,12 @@ public class FuncionarioTestesService {
 		funcionariosAtivos.add(employeInativo);
 		
 		funcDTO = new FuncionarioDTO("Renato Campos", "12345", "Rua Maranhão", "teste@email.com", "19989889999", StatusFuncionario.ATIVO);
+		funcEmailDuplicado = new FuncionarioDTO("Renato Campos", "12345", "Rua Maranhão", "teste@email.com", "19989889999", StatusFuncionario.ATIVO);
 		funcInativo = new FuncionarioDTO("Renato", "12345", "Rua Maranhão", "teste@email.com", "19989889999", StatusFuncionario.INATIVO);
 	}
 	
 	@Test
-	public void deveAtivarFuncionario() {
+	public void deveCadastrarFuncionario() {
 		
 		when(service.cadastrarFuncionario(funcDTO)).thenReturn(employe);
 		
@@ -67,6 +69,14 @@ public class FuncionarioTestesService {
 
         assertNotNull(resultado);
         assertEquals(StatusFuncionario.ATIVO, resultado.getStatus());
+	}
+	
+	@Test
+	public void deveRejeitarFuncionarioEmailDuplicado() {
+		
+		when(service.cadastrarFuncionario(funcDTO)).thenReturn(null);
+		
+		assertEquals(service.cadastrarFuncionario(funcEmailDuplicado), null);
 	}
 	
 	@Test

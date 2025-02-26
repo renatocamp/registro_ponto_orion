@@ -82,9 +82,9 @@ public class FuncionarioTestesService {
 	@Test
 	public void deveDesativarFuncionario() {
 		
-		when(service.desativarFuncionario(funcInativo)).thenReturn(employeInativo);
+		when(service.desativarFuncionario(employeInativo)).thenReturn(employeInativo);
 		
-		Funcionario resultado = service.desativarFuncionario(funcInativo);
+		Funcionario resultado = service.desativarFuncionario(employeInativo);
 
         assertNotNull(resultado);
         assertEquals(StatusFuncionario.INATIVO, resultado.getStatus());

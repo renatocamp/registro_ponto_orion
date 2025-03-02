@@ -1,5 +1,6 @@
 package br.com.orion.registroponto.models;
 
+import java.util.List;
 import java.util.UUID;
 
 import br.com.orion.registroponto.enums.StatusFuncionario;
@@ -10,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -39,6 +41,18 @@ public class Funcionario {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_funcionario")
 	private StatusFuncionario status;
+	
+	@OneToMany(mappedBy = "funcionario")
+	private List<RegistroPonto> registros;
+	
+
+	public List<RegistroPonto> getRegistros() {
+		return registros;
+	}
+
+	public void setRegistros(List<RegistroPonto> registros) {
+		this.registros = registros;
+	}
 
 	public UUID getId() {
 		return id;

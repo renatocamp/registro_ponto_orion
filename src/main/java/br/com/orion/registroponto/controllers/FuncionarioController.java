@@ -18,7 +18,7 @@ import br.com.orion.registroponto.dtos.FuncionarioDTO;
 import br.com.orion.registroponto.dtos.RespostaDTO;
 import br.com.orion.registroponto.enums.StatusFuncionario;
 import br.com.orion.registroponto.models.Funcionario;
-import br.com.orion.registroponto.services.impl.FuncionarioServiceImpl;
+import br.com.orion.registroponto.services.IFuncionarioService;
 
 @RestController
 @RequestMapping("")
@@ -26,7 +26,7 @@ import br.com.orion.registroponto.services.impl.FuncionarioServiceImpl;
 public class FuncionarioController {
 	
 	@Autowired
-	private FuncionarioServiceImpl service;
+	private IFuncionarioService service;
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<RespostaDTO> cadastrarFuncionario(@RequestBody FuncionarioDTO dto) {
